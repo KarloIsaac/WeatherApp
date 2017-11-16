@@ -1,1 +1,4 @@
 https://fcc-weather-api.glitch.me/
+
+To get the location name:
+http://maps.googleapis.com/maps/api/geocode/json?latlng=40.714224,-73.961452&sensor=true
