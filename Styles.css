@@ -1,0 +1,4 @@
+.row-pair {
+    display: flex;
+    align-items: baseline;
+}

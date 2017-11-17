@@ -63,3 +63,26 @@ function diplayLocationInformationResponse(jsonResponse) {
     var location = results.formatted_address;
     document.getElementById("location").innerHTML = location;
 }
+
+
+function changeTemperatureScale(callingElement) {
+    var celsiusButton = document.getElementById("celsius-button");
+    var fahrenheitButton = document.getElementById("fahrenheit-button");
+
+    var tempElement = document.getElementById("temp");
+    var originalTemperature = tempElement.innerHTML;
+    var adjustedTemperature = retrieveFahrenheit(originalTemperature);
+    tempElement.innerHTML = adjustedTemperature;
+}
+
+
+function retrieveFahrenheit(celsius) {
+    fahrenheit = 9*celsius/5 + 32;
+    return fahrenheit;
+}
+
+
+function retrieceCelsius(fahrenheit) {
+    celsius = (fahrenheit - 32)*5/9
+    return celsius;
+}

@@ -12,12 +12,34 @@
         <title></title>
     </head>
     <body>
-        <p id="location"></p>
-        <p id="weather-description"></p>
+        <h1>Weather Information</h1>
+        <h2 id="location"></h2>
+        <h3 id="weather-description"></h3>
         <img id="weather-image" src="" alt="Loading...">
-        <p id="temp"></p>
-        <p id="min-temp"></p>
-        <p id="max-temp"></p>
+        <div class="temperatures">
+            <h3>Temperature</h3>
+            <div class="temperature-conversions">
+                <button id="celsius-button" type="button" name="button">
+                    °C
+                </button>
+                &nbsp;|&nbsp;
+                <button id="fahrenheit-button" type="button" name="button" onclick="changeTemperatureScale(this)">
+                    °F
+                </button>
+            </div>
+            <div class="row-pair">
+                <h4>Temperature:&nbsp;</h4>
+                <div id="temp"></div>
+            </div>
+            <div class="row-pair">
+                <h4>Min. Temp:&nbsp;</h4>
+                <div id="min-temp"></div>
+            </div>
+            <div class="row-pair">
+                <h4>Max. Temp:&nbsp;</h4>
+                <div id="max-temp"></div>
+            </div>
+        </div>
         <button type="button" name="button" onclick="testFuction()">Fuction Tester</button>
     </body>
 </html>
