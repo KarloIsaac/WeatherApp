@@ -19,11 +19,11 @@
         <div class="temperatures">
             <h3>Temperature</h3>
             <div class="temperature-conversions">
-                <button id="celsius-button" type="button" name="button">
+                <button id="celsius-button" type="button" name="button" onclick="temperaturesScaleChanger.displayCelsius()">
                     °C
                 </button>
                 &nbsp;|&nbsp;
-                <button id="fahrenheit-button" type="button" name="button" onclick="changeTemperatureScale(this)">
+                <button id="fahrenheit-button" type="button" name="button" onclick="temperaturesScaleChanger.displayFahrenheit()">
                     °F
                 </button>
             </div>

@@ -51,7 +51,7 @@ function updateLocation(latitude, longitude) {
             diplayLocationInformationResponse(jsonResponse);
         }
     }
-    var url = "https://maps.googleapis.com/maps/api/geocode/json?result_type=locality&latlng=" +
+    var url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" +
             latitude + "," + longitude + "&sensor=true&key=AIzaSyC9FJPGJX7FLhjybKWBmr3hWkePo1Wfz24"
     xmlHttpRequest.open("GET", url);
     xmlHttpRequest.send();
@@ -65,24 +65,54 @@ function diplayLocationInformationResponse(jsonResponse) {
 }
 
 
-function changeTemperatureScale(callingElement) {
-    var celsiusButton = document.getElementById("celsius-button");
-    var fahrenheitButton = document.getElementById("fahrenheit-button");
+var TemperaturesScaleChanger = function() {
+    var currentScaleName = "celsius";
 
-    var tempElement = document.getElementById("temp");
-    var originalTemperature = tempElement.innerHTML;
-    var adjustedTemperature = retrieveFahrenheit(originalTemperature);
-    tempElement.innerHTML = adjustedTemperature;
+    this.displayFahrenheit = function() {
+        changeTemperatureScale("fahrenheit");
+    }
+
+    this.displayCelsius = function() {
+        changeTemperatureScale("celsius");
+    }
+
+    function changeTemperatureScale(scaleName) {
+        if(scaleName === currentScaleName) {
+            return;
+        }
+        currentScaleName = scaleName;
+        if(currentScaleName === "celsius") {
+            changedAllElementDisplayedTemperature(retrieveCelsius);
+        } else if(currentScaleName === "fahrenheit") {
+            changedAllElementDisplayedTemperature(retrieveFahrenheit);
+        }
+    }
+
+    function changedAllElementDisplayedTemperature(temperatureAdjustingFunction) {
+        var targetElementsIdsArray = ["temp", "min-temp", "max-temp"];
+        for(i in targetElementsIdsArray) {
+            var elementId = targetElementsIdsArray[i];
+            var tempElement = document.getElementById(elementId);
+            changedSingleElementDisplayedTemperature(tempElement, temperatureAdjustingFunction);
+        }
+    }
+
+    function changedSingleElementDisplayedTemperature(tempElement, temperatureAdjustingFunction) {
+        var originalTemperature = tempElement.innerHTML;
+        var adjustedTemperature = temperatureAdjustingFunction(originalTemperature);
+        tempElement.innerHTML = adjustedTemperature;
+    }
+
+    function retrieveCelsius(fahrenheit) {
+        celsius = (fahrenheit - 32)*5/9
+        return celsius;
+    }
+
+    function retrieveFahrenheit(celsius) {
+        fahrenheit = 9*celsius/5 + 32;
+        return fahrenheit;
+    }
 }
 
 
-function retrieveFahrenheit(celsius) {
-    fahrenheit = 9*celsius/5 + 32;
-    return fahrenheit;
-}
-
-
-function retrieceCelsius(fahrenheit) {
-    celsius = (fahrenheit - 32)*5/9
-    return celsius;
-}
+var temperaturesScaleChanger = new TemperaturesScaleChanger();
