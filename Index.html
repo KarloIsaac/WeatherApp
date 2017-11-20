@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <script type="text/javascript" src="Scripts.js"></script>
-        <script type="text/javascript">
-            window.onload = function() {
-                updateWeather();
-            }
-        </script>
-        <link rel="stylesheet" href="Styles.css">
-        <title></title>
-    </head>
-    <body>
-        <h1>Weather Information</h1>
-        <h2 id="location"></h2>
-        <h3 id="weather-description"></h3>
-        <img id="weather-image" src="" alt="Loading...">
-        <div class="temperatures">
-            <h3>Temperature</h3>
-            <div class="temperature-conversions">
-                <button id="celsius-button" type="button" name="button" onclick="temperaturesScaleChanger.displayCelsius()">
-                    °C
-                </button>
-                &nbsp;|&nbsp;
-                <button id="fahrenheit-button" type="button" name="button" onclick="temperaturesScaleChanger.displayFahrenheit()">
-                    °F
-                </button>
-            </div>
-            <div class="row-pair">
-                <h4>Temperature:&nbsp;</h4>
-                <div id="temp"></div>
-            </div>
-            <div class="row-pair">
-                <h4>Min. Temp:&nbsp;</h4>
-                <div id="min-temp"></div>
-            </div>
-            <div class="row-pair">
-                <h4>Max. Temp:&nbsp;</h4>
-                <div id="max-temp"></div>
-            </div>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript" src="Scripts.js"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            updateWeather();
+        }
+    </script>
+    <link rel="stylesheet" href="Styles.css">
+    <title></title>
+</head>
+<body>
+    <h1>Weather Information</h1>
+    <h3 id="location"></h3>
+    <h2 id="weather-description"></h2>
+    <div class="debug">
+        <img id="weather-image" src="" alt="weather icon">
+    </div>
+    <div id="temp-buttons">
+        <button id="celsius-button" class="temperature-conversions selected-temperature-scale" type="button" name="button" onclick="temperaturesScaleChanger.displayCelsius()">
+            °C
+        </button>
+        &nbsp;|&nbsp;
+        <button id="fahrenheit-button" class="temperature-conversions" type="button" name="button" onclick="temperaturesScaleChanger.displayFahrenheit()">
+            °F
+        </button>
+    </div>
+    <div class="temperatures">
+        <div class="row-pair">
+            <h3>Temperature:&nbsp;</h3>
+            <div id="temp"></div>
         </div>
-        <button type="button" name="button" onclick="testFuction()">Fuction Tester</button>
-    </body>
+        <div class="row-pair">
+            <h4>Min. Temp:&nbsp;</h4>
+            <div id="min-temp"></div>
+        </div>
+        <div class="row-pair">
+            <h4>Max. Temp:&nbsp;</h4>
+            <div id="max-temp"></div>
+        </div>
+    </div>
+</body>
 </html>

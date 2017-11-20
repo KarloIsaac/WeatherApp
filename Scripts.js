@@ -81,11 +81,9 @@ var TemperaturesScaleChanger = function() {
             return;
         }
         currentScaleName = scaleName;
-        if(currentScaleName === "celsius") {
-            changedAllElementDisplayedTemperature(retrieveCelsius);
-        } else if(currentScaleName === "fahrenheit") {
-            changedAllElementDisplayedTemperature(retrieveFahrenheit);
-        }
+        var tempConverterFunction = currentScaleName === "celsius" ? retrieveCelsius : retrieveFahrenheit;
+        changedAllElementDisplayedTemperature(tempConverterFunction);
+        updateTempButtonSelectionState();
     }
 
     function changedAllElementDisplayedTemperature(temperatureAdjustingFunction) {
@@ -112,6 +110,16 @@ var TemperaturesScaleChanger = function() {
         fahrenheit = 9*celsius/5 + 32;
         return fahrenheit;
     }
+
+    function updateTempButtonSelectionState() {
+        var selectedButtonId = currentScaleName === "celsius" ? "celsius-button" : "fahrenheit-button";
+        var selectedButton = document.getElementById(selectedButtonId);
+        selectedButton.className  = "temperature-conversions selected-temperature-scale";
+        var unselectedButtonId = currentScaleName === "celsius" ? "fahrenheit-button" : "celsius-button";
+        var unselectedButton = document.getElementById(unselectedButtonId);
+        unselectedButton.className  = "temperature-conversions";
+    }
+
 }
 
 
