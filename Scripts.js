@@ -1,7 +1,3 @@
-function testFuction() {
-    updateWeather();
-}
-
 
 function updateWeather() {
     var processPosition = function(position) {
@@ -27,6 +23,7 @@ function updateWeatherIformation(latitude, longitude) {
         }
     }
     var url = "https://fcc-weather-api.glitch.me/api/current?lat=" + latitude + "&lon=" + longitude;
+    console.log(url);
     xmlHttpRequest.open("GET", url, true);
     xmlHttpRequest.send();
 }
@@ -34,7 +31,7 @@ function updateWeatherIformation(latitude, longitude) {
 
 function diplayWeatherInformationResponse(jsonResponse) {
     var weather = jsonResponse.weather[0];
-    document.getElementById("weather-description").innerHTML = weather.description;
+    document.getElementById("weather-description").innerHTML = weather.description.toUpperCase();
     document.getElementById("weather-image").src = weather.icon;
     var temperatureInfo = jsonResponse.main;
     document.getElementById("temp").innerHTML = temperatureInfo["temp"];
@@ -103,13 +100,19 @@ var TemperaturesScaleChanger = function() {
 
     function retrieveCelsius(fahrenheit) {
         celsius = (fahrenheit - 32)*5/9
-        return celsius;
+        return roundTo2Decimals(celsius);
     }
 
     function retrieveFahrenheit(celsius) {
         fahrenheit = 9*celsius/5 + 32;
-        return fahrenheit;
+        return roundTo2Decimals(fahrenheit);
     }
+
+    function roundTo2Decimals(value) {
+        value = Math.round(value * 100 + Number.EPSILON) / 100;
+        return value;
+    }
+
 
     function updateTempButtonSelectionState() {
         var selectedButtonId = currentScaleName === "celsius" ? "celsius-button" : "fahrenheit-button";
@@ -119,8 +122,7 @@ var TemperaturesScaleChanger = function() {
         var unselectedButton = document.getElementById(unselectedButtonId);
         unselectedButton.className  = "temperature-conversions";
     }
-
 }
 
 
-var temperaturesScaleChanger = new TemperaturesScaleChanger();
+const temperaturesScaleChanger = new TemperaturesScaleChanger();
