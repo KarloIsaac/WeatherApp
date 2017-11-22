@@ -3,13 +3,10 @@ html {
     background-image: linear-gradient(to bottom, black, #69709a);
 }
 
-
 body {
     display: flex;
     justify-content: center;
-
 }
-
 
 #root {
     display: flex;
@@ -30,12 +27,10 @@ h1, h2, .row-pair {
     border-radius: 5px;
 }
 
-
 h3, h4 {
     padding: 3px;
     margin: 0px;
 }
-
 
 .row-pair {
     display: flex;
@@ -44,32 +39,30 @@ h3, h4 {
     border-style: none;
 }
 
-
 .temperature-conversions {
     border-style: none;
-}
-
-
-.temperature-conversions:hover {
+    background: none;
+    font-size: inherit;
+    outline: 0;
     cursor: pointer;
+    color: #9e9e9eba;
 }
-
 
 .selected-temperature-scale {
-    color: red;
+    color: #050fb5;
 }
-
 
 #temp-buttons {
     margin-top: 50px;
+    font-size:larger;
+    display: flex;
+    align-items:flex-start;
 }
-
 
 #weather-description {
     margin-top: 60px;
     margin-bottom: 0px;
 }
-
 
 #location {
     margin: 0px;
